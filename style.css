@@ -693,7 +693,7 @@ footer ul li a:hover::after {
         margin-bottom: 1.3rem;
     }
     .categories_right {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 0.7rem;
     }
     .category {
