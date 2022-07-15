@@ -120,16 +120,16 @@
                 </ul>
             </aside>
 
-            <form class="contact_form">
+            <form class="contact_form" id="form">
                 <div class="form_name">
-                    <input id="name" type="text" placeholder="Full Name">
+                    <input type="text" name="from_name" id="from_name" placeholder="Full Name" required>
                 </div>
                 <div class="form_others">
-                    <input id="email" type="email" placeholder="Email Address">
-                    <input id="subject" type="text" placeholder="Subject">
+                    <input type="text" name="from_email" id="from_email" placeholder="Email Address" required>
+                    <input type="text" name="from_subject" id="from_subject" placeholder="Subject" required>
                 </div>
-                <textarea id="message" rows="7" placeholder="Your Message"></textarea>
-                <button type="submit" class="btn btn-primary" onclick="sendmail()">Send</button>
+                <textarea type="text" name="message" id="message" rows="7" placeholder="Your Message" required></textarea>
+                <input type="submit" id="button" class="btn btn-primary" value="Send Email">
             </form>
         </div>
     </section>
@@ -219,44 +219,30 @@
     </a>
 
     <script src="main.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <script type="text/javascript">
-        (function() {
-            emailjs.init('TsZbPDQpwp7E7Cc2Y');
-        })();
+        emailjs.init('TsZbPDQpwp7E7Cc2Y')
+        const btn = document.getElementById('button');
 
-        let emailFilter = /^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i
+        document.getElementById('form')
+            .addEventListener('submit', function(event) {
+                event.preventDefault();
 
-        function sendmail() {
-            let fullName = document.getElementById("name").value;
-            let userEmail = document.getElementById("email").value;
-            let emailFilter = /^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i
-            let userSubject = document.getElementById("subject").value;
-            let userMessage = document.getElementById("message").value;
-            if (fullName == "") {
-                alert("Please Enter your Full Name");
-            } else if (userEmail == "" || userEmail.match(!emailFilter)) {
-                alert("Please Enter a Valid Email");
-            } else if (userSubject == "") {
-                alert("Please Enter Subject");
-            } else if (userMessage == "") {
-                alert("Please Enter your Message");
-            } else {
-                var templateParams = {
-                    from_name: fullName,
-                    from_email: userEmail,
-                    from_subject: userSubject,
-                    message: userMessage
-                };
+                btn.value = 'Sending...';
 
-                emailjs.send("service_jjgq58q", "template_0f4yi8b", templateParams).then(function(res) {
-                        alert("Message Sent Successfully");
-                    },
-                    reason => {
-                        alert("Error Occur");
-                    }
-                )
-            }
-        }
+                const serviceID = 'default_service';
+                const templateID = 'template_0f4yi8b';
+
+                emailjs.sendForm(serviceID, templateID, this)
+                    .then(() => {
+                        btn.value = 'Send Email';
+                        alert('Message Successfully Sent!');
+                    }, (err) => {
+                        btn.value = 'Send Email';
+                        alert("Error occur");
+                    });
+            });
     </script>
 
     <script type="text/javascript">
