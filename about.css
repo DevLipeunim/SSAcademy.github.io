@@ -120,6 +120,9 @@
     .team_member {
         padding: 1rem;
     }
+    .team_member-socials img {
+        width: 25px;
+    }
 }
 
 @media screen and (max-width: 600px) {

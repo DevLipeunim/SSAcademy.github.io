@@ -64,12 +64,24 @@
     margin-right: 4rem;
 }
 
-.form_name {
+textarea {
+    resize: none;
+}
+
+.form_name input[type="text"] {
+    width: 100% !important;
+}
+
+.form_others {
     display: flex;
     gap: 1.2rem;
 }
 
 .contact_form input[type="text"] {
+    width: 50%;
+}
+
+.contact_form input[type="email"] {
     width: 50%;
 }
 
@@ -121,7 +133,16 @@ textarea {
     .form_name {
         flex-direction: column;
     }
+    .form_others {
+        flex-direction: column;
+    }
     .form_name input[type="text"] {
+        width: 100%;
+    }
+    .form_others input[type="text"] {
+        width: 100%;
+    }
+    .contact_form input[type="email"] {
         width: 100%;
     }
 }

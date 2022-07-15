@@ -122,12 +122,14 @@
 
             <form class="contact_form">
                 <div class="form_name">
-                    <input type="text" name="First Name" placeholder="First Name" required>
-                    <input type="text" name="Last Name" placeholder="Last Name" required>
+                    <input id="name" type="text" placeholder="Full Name">
                 </div>
-                <input type="email" name="Email Address" placeholder="Email Address" required>
-                <textarea name="Message" rows="7" placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <div class="form_others">
+                    <input id="email" type="email" placeholder="Email Address">
+                    <input id="subject" type="text" placeholder="Subject">
+                </div>
+                <textarea id="message" rows="7" placeholder="Your Message"></textarea>
+                <button type="button" class="btn btn-primary" onclick="sendmail()">Send</button>
             </form>
         </div>
     </section>
@@ -136,9 +138,9 @@
         <div class="container footer_container">
             <div class="footer_1">
                 <a href="index.html" class="footer_logo">
-                    <h4>SSAcademy</h4>
+                    <h4>Partnership</h4>
                 </a>
-                <p>Write a short note</p>
+                <p><strong>Chukem Computer Institute</strong> is the Tech arm of <strong> Standard Success Academy</strong>, registered under the Small and Medium Enterprises Development Agency of Nigeria (SMEDAN) with registration number SUIN58462121.</p>
             </div>
 
             <div class="footer_2">
@@ -186,19 +188,21 @@
                 </div>
                 <ul class="footer_socials">
                     <li>
-                        <a href="https://facebook.com/"><i class="uil uil-facebook-f"></i></a>
+                        <a href="https://facebook.com/" target="_blank">
+                            <img src="images/Facebook.png">
+                        </a>
                     </li>
                     <li>
-                        <a href="https://instagram.com/"><i class="uil uil-instagram"></i></a>
+                        <a href="https://instagram.com/" target="_blank"><img src="images/Instagram.png"></a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/"><i class="uil uil-twitter"></i></a>
+                        <a href="https://twitter.com/" target="_blank"><img src="images/Twitter.png"></a>
                     </li>
                     <li>
-                        <a href="https://linkedin.com/"><i class="uil uil-linkedin"></i></a>
+                        <a href="https://linkedin.com/" target="_blank"><img src="images/LinkedIn.png"></a>
                     </li>
                     <li>
-                        <a href="https://github.com/"><i class="uil uil-github-alt"></i></a>
+                        <a href="https://github.com/" target="_blank"><img src="images/Youtube.png"></a>
                     </li>
                 </ul>
             </div>
@@ -215,6 +219,43 @@
     </a>
 
     <script src="main.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init('TsZbPDQpwp7E7Cc2Y');
+        })();
+
+        function sendmail() {
+            let fullName = document.getElementById("name").value;
+            let userEmail = document.getElementById("email").value;
+            let emailFilter = /^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i
+            let userSubject = document.getElementById("subject").value;
+            let userMessage = document.getElementById("message").value;
+            if (fullName == "") {
+                alert("Please Enter your Full Name");
+            } else if (userEmail == "" || userEmail.match(!emailFilter)) {
+                alert("Please Enter a Valid Email");
+            } else if (userSubject == "") {
+                alert("Please Enter Subject");
+            } else if (userMessage == "") {
+                alert("Please Enter your Message");
+            } else {
+                var templateParams = {
+                    from_name: fullName,
+                    from_email: userEmail,
+                    from_subject: userSubject,
+                    message: userMessage
+                };
+
+                emailjs.send('service_jjgq58q', 'template_0f4yi8b', templateParams).then(function(res) {
+                        alert("Message Sent Successfully");
+                    },
+                    reason => {
+                        alert("Error Occur");
+                    }
+                )
+            }
+        }
+    </script>
     <script type="text/javascript">
         // show scroll top
         function scrollUp() {
