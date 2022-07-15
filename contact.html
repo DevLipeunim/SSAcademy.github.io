@@ -129,7 +129,7 @@
                     <input id="subject" type="text" placeholder="Subject">
                 </div>
                 <textarea id="message" rows="7" placeholder="Your Message"></textarea>
-                <button type="button" class="btn btn-primary" onclick="sendmail()">Send</button>
+                <button type="submit" class="btn btn-primary" onclick="sendmail()">Send</button>
             </form>
         </div>
     </section>
@@ -224,6 +224,8 @@
             emailjs.init('TsZbPDQpwp7E7Cc2Y');
         })();
 
+        let emailFilter = /^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i
+
         function sendmail() {
             let fullName = document.getElementById("name").value;
             let userEmail = document.getElementById("email").value;
@@ -246,7 +248,7 @@
                     message: userMessage
                 };
 
-                emailjs.send('service_jjgq58q', 'template_0f4yi8b', templateParams).then(function(res) {
+                emailjs.send("service_jjgq58q", "template_0f4yi8b", templateParams).then(function(res) {
                         alert("Message Sent Successfully");
                     },
                     reason => {
@@ -256,6 +258,7 @@
             }
         }
     </script>
+
     <script type="text/javascript">
         // show scroll top
         function scrollUp() {
