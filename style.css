@@ -372,6 +372,18 @@ header {
     border-color: var(--color-primary);
 }
 
+.course_image {
+    flex-shrink: 0;
+    height: 200px;
+}
+
+.course_image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: fill;
+}
+
 .course_info {
     padding: 2rem;
 }
