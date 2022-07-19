@@ -223,7 +223,7 @@ header {
     position: relative;
     top: 11rem;
     overflow: hidden;
-    height: 70vh;
+    height: 80vh;
     margin-bottom: 12rem;
 }
 
@@ -237,6 +237,10 @@ header {
 
 .header_left p {
     margin: 1rem 0 2.4rem;
+}
+
+.header_left h1 {
+    line-height: 60px;
 }
 
 .home_scroll {
@@ -300,7 +304,7 @@ header {
 
 .categories_right {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.2rem;
 }
 
@@ -347,7 +351,7 @@ header {
 }
 
 .courses {
-    margin-top: 10rem;
+    margin-top: 30rem;
 }
 
 .courses_container {
@@ -361,10 +365,6 @@ header {
     text-align: center;
     border: 1px solid transparent;
     transition: var(--transition);
-    -webkit-transition: var(--transition);
-    -moz-transition: var(--transition);
-    -ms-transition: var(--transition);
-    -o-transition: var(--transition);
 }
 
 .course:hover {
