@@ -533,7 +533,7 @@ footer ul li a:hover::after {
 
 .scrollup {
     position: fixed;
-    right: 1rem;
+    right: 2rem;
     bottom: -20%;
     background-color: #74d14c;
     opacity: .8;

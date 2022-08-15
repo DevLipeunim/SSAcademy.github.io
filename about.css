@@ -24,6 +24,7 @@
     border-radius: 1rem;
     text-align: center;
     transition: var(--transition);
+    transform: translateY(6rem);
 }
 
 .achievement_card:hover {
@@ -100,7 +101,14 @@
     align-items: center;
     justify-content: center;
 }
-
+@keyframes slide-up {
+    0%{
+        transform: translateY(6rem);
+    }
+    100%{
+        transform: translateY(0rem);
+    }
+}
 @media screen and (max-width: 1024px) {
     .about_achievements {
         margin-top: 2rem;
